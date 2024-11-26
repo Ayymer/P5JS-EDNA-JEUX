@@ -1,10 +1,15 @@
 let joueur;
 let starList = [];
+let score = 0;
+let timer = 0;
 
 function setup() {
   createCanvas(500, 500);
   background(0);
   joueur = new Joueur();
+  for(let i=0; i<50; i++){
+    createStar();
+  }
 }
 
 function draw(){
@@ -23,9 +28,17 @@ function draw(){
       starList.splice(i,1);
       createStar();
       createStar();
+      score++;
     }
   }
+  textSize(30);
+  text(score, width/2, 50);
 
+  timer += deltaTime;
+  if(timer > 1000){
+    createStar();
+    timer = 0;
+  }
 }
 
 function createStar(){
